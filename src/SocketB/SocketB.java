@@ -5,6 +5,7 @@ import org.apache.commons.net.ftp.FTPClient;
 import java.io.*;
 import java.net.*;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 import java.util.Scanner;
 import java.util.logging.Level;
 
@@ -38,7 +39,7 @@ public class SocketB {
         File file = new File(nombreRemoto);
         FileWriter writer = new FileWriter(file);
 
-        writer.write(packet.toString());
+        writer.write(Arrays.toString(packet.toString().getBytes()));
 
         ftpClient.makeDirectory("/htdocs/examen");
         String rutaRemota = "/htdocs/examen/" + nombreRemoto;
