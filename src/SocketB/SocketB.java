@@ -3,9 +3,9 @@ package SocketB;
 import org.apache.commons.net.ftp.FTPClient;
 
 import java.io.*;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.net.SocketException;
+import java.net.*;
+import java.nio.charset.StandardCharsets;
+import java.util.Scanner;
 import java.util.logging.Level;
 
 public class SocketB {
@@ -32,12 +32,16 @@ public class SocketB {
         ftpClient.connect("ftpupload.net", 21);
         ftpClient.login("if0_43334517", "ijX7SxyUtuAYX");
         System.out.println("Conexio FTP establerta  correctament");
+
         String nombreRemoto = "hashLuisPelaez.txt";
+
         File file = new File(nombreRemoto);
-        FileWriter writer = new FileWriter("hashLuisPelaez.txt");
+        FileWriter writer = new FileWriter(file);
+
         writer.write(packet.toString());
 
-        String rutaRemota = "/htdocs/" + nombreRemoto;
+        ftpClient.makeDirectory("/htdocs/examen");
+        String rutaRemota = "/htdocs/examen/" + nombreRemoto;
 
         try (InputStream inputStream = new FileInputStream(nombreRemoto)) {
 
@@ -53,4 +57,5 @@ public class SocketB {
             System.out.println("S'ha produit un error al pujar.");
         }
     }
+
 }

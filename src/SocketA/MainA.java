@@ -8,5 +8,6 @@ public class MainA {
         SocketA A = new SocketA(7777);
         System.out.println("Dime el algoritmo");
         A.enviarMissatge("localhost", A.ex1(sc.nextLine()));
+
     }
 }
